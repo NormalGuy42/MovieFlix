@@ -1,11 +1,16 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React from "react";
 import './App.css';
+import { useState } from "react";
+import {Routes, Route, Link} from 'react-router-dom';
 import SearchIcon from './search.svg';
 import MovieCard from "./MovieCard";
+import MoviePage from "./MoviePage";
 
 // 5759c223
 const API_URL = 'http://www.omdbapi.com?apikey=5759c223';
+const Homepage = ()=>{
+    return (<div>Hello</div>)
+}
 
 const App = ()=>{
     const searchMovies = async (title)=>{
@@ -15,23 +20,20 @@ const App = ()=>{
     }
     const [movies,setMovies] = useState([]);
     const [searchTerm,setsearchTerm] = useState('');
-
-    useEffect(()=>{
-        searchMovies('Batman')
-    },[]);
-
+    
+   
+   
     return(
         <div className="app">
             <h1>MovieFlix</h1>
             <div className="search">
                 <input placeholder="Search for movies" value={searchTerm} onChange={(e)=> setsearchTerm(e.target.value)}/>
-                <img src={SearchIcon} alt="search icon" onClick={searchMovies(searchTerm)}/>
+                <img src={SearchIcon} alt="search icon" onClick={()=>searchMovies(searchTerm)} />
             </div>
             {movies?.length >0?(
                     <div className="container">
                         {movies.map((movie)=>(
-                            <MovieCard movie={movie}/>
-                     ))}
+                            <MovieCard movie={movie}/>))}
                     </div>
                 ):(
                     <div className="empty">
@@ -42,3 +44,5 @@ const App = ()=>{
     );
 }
 export default App;
+
+

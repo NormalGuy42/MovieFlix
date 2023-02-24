@@ -1,8 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MovieCard = ({movie})=>{
     return(
-        <div className="movie">
+        <Link to="/MoviePage">
+            <div className="movie">
             <div>
                 <p>{movie.Year}</p>
             </div>
@@ -14,6 +16,7 @@ const MovieCard = ({movie})=>{
                 <h3>{movie.Title}</h3>
             </div>
         </div>
-    )
+        </Link>
+    );
 }
 export default MovieCard;
